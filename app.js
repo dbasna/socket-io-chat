@@ -1,3 +1,3 @@
-var Socket = require('./src/Socket.js');
+var Server = require('./src/Server.js');
 
-var socket = new Socket();
+var server = new Server();

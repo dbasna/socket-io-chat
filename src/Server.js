@@ -5,7 +5,7 @@ var io = require('socket.io');
 var User = require('./User.js');
 var Message = require('./Message.js');
 
-function Socket() {
+function Server() {
     var self = this;
     this.app = express();
     this.http = http.Server(this.app);
@@ -28,7 +28,7 @@ function Socket() {
     });
 }
 
-Socket.prototype.connection = function (socket) {
+Server.prototype.connection = function (socket) {
     var self = this;
     var user = new User();
 
@@ -51,8 +51,8 @@ Socket.prototype.connection = function (socket) {
     });
 };
 
-Socket.prototype.listen = function () {
+Server.prototype.listen = function () {
     console.log('listening on *:3000');
 };
 
-module.exports = Socket;
+module.exports = Server;
