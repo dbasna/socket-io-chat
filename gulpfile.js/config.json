@@ -1,0 +1,42 @@
+{
+    "config": {
+        "source": "./src/",
+        "dest": "./dist/",
+        "vendor": "./vendor/"
+    },
+    "fonts": {
+        "in": "fonts/**/*",
+        "out": "fonts/"
+    },
+    "scss": {
+        "in": "scss/*.scss",
+        "out": "css/",
+        "watch": "scss/**/*"
+    },
+    "js": {
+        "in": "js/app.js",
+        "out": "js/",
+        "source": "app.min.js",
+        "vendor_in": "js/bundle.js",
+        "vendor_out": "js/",
+        "vendor_source": "bundle.min.js",
+        "dashboard_in": "js/dashboard.js",
+        "dashboard_out": "js/",
+        "dashboard_source": "dashboard.min.js",
+        "watch": "js/**/*"
+    },
+    "icons": {
+        "in": "icons/**/*.svg",
+        "out": "img/",
+        "watch": "icons/**/*.svg"
+    },
+    "vendors" : {
+        "bootstrapSass": {
+            "in": "./bower_components/bootstrap-sass/",
+            "fonts": "assets/fonts/**/*"
+        },
+        "owlCarousel": {
+            "in": "./bower_components/owl.carousel/"
+        }
+    }
+}
