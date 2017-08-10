@@ -41,6 +41,13 @@ function Server() {
         }
     });
 
+    //Catch error, prevent crashing app
+    process.on('uncaughtException', function(err) {
+      console.log(JSON.stringify(process.memoryUsage()));
+      console.error("An uncaughtException was found : " + err + ", stacktrace: " + err.stack);
+      //return process.exit(1);
+    });
+
     //Start server listening on a define port
     this.http.listen(3000, function(){
         console.log('listening on *:3000');
