@@ -1,5 +1,6 @@
 var User = require('./User.js');
 var Message = require('./Message.js');
+var CommandHandler = require('./CommandHandler.js');
 
 function Channel(server, id) {
     //Define an alias to get the channel instance
@@ -61,6 +62,15 @@ Channel.prototype.connection = function (socket) {
             var message = new Message(user, msg);
             self.channel.in(room).emit('chat.message', message);
             console.log('user ' + user.getID() + ' sent a message: ' + msg);
+        });
+
+        //Define a "chat.command" listener
+        socket.on('chat.command', function(data) {
+            console.log('chat command : ' + data.command);
+            var command = new CommandHandler(user, data.command, data.params);
+            command.execute(function(message) {
+                self.channel.in(room).emit('chat.info', message);
+            });
         });
 
         //Define a "disconnect" listener

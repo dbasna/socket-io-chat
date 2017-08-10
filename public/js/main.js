@@ -15,7 +15,16 @@ app.init = function() {
 
     //On form submit emit a "chat.message" with the input value
     $('form').submit(function(){
-        socket.emit('chat.message', $('#m').val());
+        var value = $('#m').val();
+        var regex = value.match(/^(\/[a-zA-Z]+)( [a-zA-Z]+)+$/);
+
+        if(regex) {
+            socket.emit('chat.command', { command:regex[1], params:[regex[2].substring(1)] });
+        }
+        else {
+            socket.emit('chat.message', value);
+        }
+
         $('#m').val('');
         return false;
     });
@@ -29,7 +38,7 @@ app.init = function() {
     //Define a "chat.message" listener returning user message to the chat
     socket.on('chat.message', function(msg){
         var message = '@' + msg.user.username + ' : ' + msg.content;
-        $('#messages').append($('<li>').text(message));
+        $('#messages').append($('<li>c').text(message));
     });
 }
 
